@@ -1,0 +1,4 @@
+name: Replanter
+version: '${version}'
+main: dev.spozap.replanter.Replanter
+api-version: '1.20'
