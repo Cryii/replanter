@@ -1,17 +1,23 @@
-package dev.spozap.replanter;
+package dev.spozap.replanter
 
-import org.bukkit.plugin.java.JavaPlugin;
+import dev.spozap.replanter.listeners.SeedBreakEvent
+import org.bukkit.plugin.java.JavaPlugin
 
-public final class Replanter extends JavaPlugin {
+class Replanter : JavaPlugin() {
 
-    @Override
-    public void onEnable() {
-        // Plugin startup logic
+    private lateinit var plugin: Replanter
 
+    override fun onEnable() {
+        plugin = this
+
+        registerListeners()
     }
 
-    @Override
-    public void onDisable() {
+    override fun onDisable() {
         // Plugin shutdown logic
+    }
+
+    private fun registerListeners() {
+        plugin.server.pluginManager.registerEvents(SeedBreakEvent(), this)
     }
 }
