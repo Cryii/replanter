@@ -20,7 +20,7 @@ class ReplantCommand(val playerManager: PlayerManager) : CommandExecutor {
 
         val toggled = playerManager.toggleReplant(playerId)
 
-        if (toggled) sender.sendMessage("Has activado auto-replant") else sender.sendMessage("Has desactivado auto-replant")
+        if (toggled) sender.sendMessage("Auto replant ON") else sender.sendMessage("Auto replant OFF")
 
         return true
 
