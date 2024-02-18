@@ -40,8 +40,8 @@ class CropManager {
     }
 
     fun canRetrieveSeed(player: Player, seed: Material): Boolean {
-      val inventory = player.inventory
-      return inventory.contains(findReplantableSeed(seed))
+        val inventory = player.inventory
+        return inventory.contains(findReplantableSeed(seed))
     }
 
     fun retrieveSeed(player: Player, seed: Material) {
@@ -60,7 +60,7 @@ class CropManager {
 
     }
 
-    fun findReplantableSeed(seed: Material): Material {
+    private fun findReplantableSeed(seed: Material): Material {
         return SEED_REPLACEMENT[seed] ?: seed
     }
 
