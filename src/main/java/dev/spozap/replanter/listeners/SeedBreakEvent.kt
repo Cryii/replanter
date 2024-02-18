@@ -16,7 +16,7 @@ class SeedBreakEvent(private val plugin: Replanter) : Listener {
     private val playerManager = plugin.playerManager
 
     companion object {
-        private val ALLOWED_SEEDS = setOf(Material.WHEAT, Material.CARROTS, Material.POTATOES, Material.MELON_STEM, Material.PUMPKIN_STEM, Material.BEETROOTS)
+        private val ALLOWED_SEEDS = setOf(Material.WHEAT, Material.CARROTS, Material.POTATOES, Material.MELON_STEM, Material.PUMPKIN_STEM, Material.BEETROOTS, Material.NETHER_WART)
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -32,8 +32,13 @@ class SeedBreakEvent(private val plugin: Replanter) : Listener {
 
         if (!seedData.isFullyGrown()) return
 
-        event.isCancelled = true
-        cropManager.replant(brokenBlock, seedData)
+        if (cropManager.canRetrieveSeed(event.player, brokenBlock.type)) {
+
+            event.isCancelled = true
+            cropManager.retrieveSeed(event.player, brokenBlock.type)
+            cropManager.replant(brokenBlock, seedData)
+        }
+
 
     }
 
